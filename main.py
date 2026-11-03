@@ -46,6 +46,7 @@ def main():
         log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print("Closing appplication...")
                 running = False
                 break
         
@@ -63,6 +64,12 @@ def main():
 
                 running = False
                 break
+
+            for shot in shots:
+                if object.collides_with(shot):
+                    log_event("asteroid_shot")
+                    shot.kill()
+                    object.split()
 
         pygame.display.flip()
         # print(dt, flush=True)
